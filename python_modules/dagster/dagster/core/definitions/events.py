@@ -6,7 +6,7 @@ from typing import AbstractSet, Any, Dict, List, NamedTuple, Optional, Tuple, Un
 from dagster import check, seven
 from dagster.core.errors import DagsterInvalidAssetKey
 from dagster.serdes import DefaultNamedTupleSerializer, whitelist_for_serdes
-from dagster.utils.backcompat import experimental_arg_warning, experimental_class_param_warning
+from dagster.utils.backcompat import experimental_arg_warning
 
 from .event_metadata import (
     EventMetadataEntry,
