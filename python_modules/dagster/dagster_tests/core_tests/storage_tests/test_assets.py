@@ -120,19 +120,18 @@ def test_backcompat_asset_materializations():
 
     @op
     def materialize():
-        yield AssetMaterialization(AssetKey("c"), tags={"foo": "bar"})
+        yield AssetMaterialization(AssetKey("c"))
         yield Output(None)
 
     @job
     def my_job():
         materialize()
 
-    def _validate_materialization(asset_key, event, expected_tags):
+    def _validate_materialization(asset_key, event):
         assert isinstance(event, EventLogEntry)
         assert event.dagster_event
         assert event.dagster_event.is_step_materialization
         assert event.dagster_event.step_materialization_data.materialization.asset_key == asset_key
-        assert event.dagster_event.step_materialization_data.materialization.tags == expected_tags
 
     a = AssetKey("a")
     b = AssetKey("b")
@@ -146,32 +145,31 @@ def test_backcompat_asset_materializations():
             assert a_mat is None
 
             b_mat = storage.get_latest_materialization_events([b]).get(b)
-            _validate_materialization(b, b_mat, expected_tags={})
+            _validate_materialization(b, b_mat)
 
             c_mat = storage.get_latest_materialization_events([c]).get(c)
-            _validate_materialization(c, c_mat, expected_tags={})
+            _validate_materialization(c, c_mat)
 
             mat_by_key = storage.get_latest_materialization_events([a, b, c])
             assert mat_by_key.get(a) is None
-            _validate_materialization(b, mat_by_key.get(b), expected_tags={})
-            _validate_materialization(c, mat_by_key.get(c), expected_tags={})
+            _validate_materialization(b, mat_by_key.get(b))
+            _validate_materialization(c, mat_by_key.get(c))
 
-            # materialize c with tags
             my_job.execute_in_process(instance=instance)
 
             a_mat = storage.get_latest_materialization_events([a]).get(a)
             assert a_mat is None
 
             b_mat = storage.get_latest_materialization_events([b]).get(b)
-            _validate_materialization(b, b_mat, expected_tags={})
+            _validate_materialization(b, b_mat)
 
             c_mat = storage.get_latest_materialization_events([c]).get(c)
-            _validate_materialization(c, c_mat, expected_tags={"foo": "bar"})
+            _validate_materialization(c, c_mat)
 
             mat_by_key = storage.get_latest_materialization_events([a, b, c])
             assert mat_by_key.get(a) is None
-            _validate_materialization(b, mat_by_key.get(b), expected_tags={})
-            _validate_materialization(c, c_mat, expected_tags={"foo": "bar"})
+            _validate_materialization(b, mat_by_key.get(b))
+            _validate_materialization(c, c_mat)
 
 
 def test_asset_lazy_migration():

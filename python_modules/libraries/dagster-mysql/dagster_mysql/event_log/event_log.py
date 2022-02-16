@@ -137,17 +137,11 @@ class MySQLEventLogStorage(SqlEventLogStorage, ConfigurableClass):
                         last_materialization=serialize_dagster_namedtuple(materialization),
                         last_materialization_timestamp=utc_datetime_from_timestamp(event.timestamp),
                         last_run_id=event.run_id,
-                        tags=seven.json.dumps(materialization.tags)
-                        if materialization.tags
-                        else None,
                     )
                     .on_duplicate_key_update(
                         last_materialization=serialize_dagster_namedtuple(materialization),
                         last_materialization_timestamp=utc_datetime_from_timestamp(event.timestamp),
                         last_run_id=event.run_id,
-                        tags=seven.json.dumps(materialization.tags)
-                        if materialization.tags
-                        else None,
                     )
                 )
         else:

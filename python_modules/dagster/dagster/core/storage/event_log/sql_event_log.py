@@ -126,7 +126,6 @@ class SqlEventLogStorage(EventLogStorage):
                     last_materialization=serialize_dagster_namedtuple(event),
                     last_materialization_timestamp=utc_datetime_from_timestamp(event.timestamp),
                     last_run_id=event.run_id,
-                    tags=seven.json.dumps(materialization.tags) if materialization.tags else None,
                 )
             )
             update_statement = (
@@ -135,7 +134,6 @@ class SqlEventLogStorage(EventLogStorage):
                     last_materialization=serialize_dagster_namedtuple(event),
                     last_materialization_timestamp=utc_datetime_from_timestamp(event.timestamp),
                     last_run_id=event.run_id,
-                    tags=seven.json.dumps(materialization.tags) if materialization.tags else None,
                 )
                 .where(
                     AssetKeyTable.c.asset_key == event.dagster_event.asset_key.to_string(),

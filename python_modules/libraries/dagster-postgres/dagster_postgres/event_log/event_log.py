@@ -178,9 +178,6 @@ class PostgresEventLogStorage(SqlEventLogStorage, ConfigurableClass):
                         last_materialization=serialize_dagster_namedtuple(materialization),
                         last_materialization_timestamp=utc_datetime_from_timestamp(event.timestamp),
                         last_run_id=event.run_id,
-                        tags=seven.json.dumps(materialization.tags)
-                        if materialization.tags
-                        else None,
                     )
                     .on_conflict_do_update(
                         index_elements=[AssetKeyTable.c.asset_key],
@@ -190,9 +187,6 @@ class PostgresEventLogStorage(SqlEventLogStorage, ConfigurableClass):
                                 event.timestamp
                             ),
                             last_run_id=event.run_id,
-                            tags=seven.json.dumps(materialization.tags)
-                            if materialization.tags
-                            else None,
                         ),
                     )
                 )
