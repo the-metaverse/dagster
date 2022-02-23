@@ -228,12 +228,23 @@ def test_collect_and_dep():
             x = dynamic_solid()
             x.map(lambda y: add(y, x.collect()))
 
+    # should this fail?
+    with pytest.raises(
+        DagsterInvalidDefinitionError,
+        match="cannot both collect over dynamic output",
+    ):
+
+        @pipeline
+        def _bad_echo():
+            x = dynamic_solid()
+            x.map(lambda y: add(y, echo(x.collect())))
+
     with pytest.raises(
         DagsterInvalidDefinitionError,
         match="cannot be both downstream of dynamic output",
     ):
 
         @pipeline
-        def _bad():
+        def _bad_other():
             x = dynamic_solid()
             x.map(lambda y: add(x.collect(), y))
