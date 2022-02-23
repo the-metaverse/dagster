@@ -1,4 +1,4 @@
-from docs_snippets.concepts.solids_pipelines.pipeline_execution import execute_subset, my_job
+from docs_snippets.concepts.ops_jobs_graphs.job_execution import execute_subset, my_job
 
 
 def test_execute_my_job():
