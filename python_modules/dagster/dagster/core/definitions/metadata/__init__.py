@@ -120,7 +120,7 @@ def normalize_metadata_value(raw_value: RawMetadataValue):
             raise DagsterInvalidMetadata(
                 "Value is a dictionary but is not JSON serializable. "
                 "Consider wrapping the value with the appropriate MetadataValue type."
-            )
+            ) from None
 
     if isinstance(raw_value, os.PathLike):
         return MetadataValue.path(raw_value)
