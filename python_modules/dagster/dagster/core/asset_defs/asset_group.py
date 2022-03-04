@@ -259,6 +259,7 @@ class AssetGroup(
                     }
                 }
                 if asset.op.name == "_def_asset":
+                    continue
                     op_config[asset.op.name]["inputs"] = {
                         "c": None,
                         "b": None,
@@ -285,12 +286,12 @@ class AssetGroup(
             # subset selected
             else:
                 if asset.can_subset:
-                    included_assets.add(asset.subset(selected_subset, selected_asset_keys))
-                    excluded_assets.add(
-                        asset.subset(asset.asset_keys - selected_subset, selected_asset_keys)
-                    )
+                    included_asset = asset.subset_for(selected_asset_keys)
+                    included_assets.add(included_asset)
+                    excluded_asset = asset.subset_for(asset.asset_keys - included_asset.asset_keys)
+                    excluded_assets.add(excluded_asset)
                 else:
-                    # TODO: warn
+                    # TODO: warn -- this will just add all assets to the set
                     included_assets.add(asset)
         return list(included_assets), list(excluded_assets)
 
