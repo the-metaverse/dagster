@@ -413,7 +413,7 @@ def _evaluate_sensor(
         return
 
     skipped_runs = []
-    existing_runs_by_key = _fetch_existing_runs(external_sensor, sensor_runtime_data.run_requests)
+    existing_runs_by_key = _fetch_existing_runs(instance, external_sensor, sensor_runtime_data.run_requests)
 
     for run_request in sensor_runtime_data.run_requests:
         target_data = external_sensor.get_target_data(run_request.job_name)
