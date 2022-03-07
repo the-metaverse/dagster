@@ -593,6 +593,7 @@ def pylint_steps():
         .build()
     ]
 
+
 def isort_steps():
     return [
         StepBuilder(":isort:")
@@ -600,6 +601,7 @@ def isort_steps():
         .on_integration_image(SupportedPython.V3_7)
         .build(),
     ]
+
 
 def black_steps():
     return [
@@ -609,6 +611,7 @@ def black_steps():
         .on_integration_image(SupportedPython.V3_7)
         .build(),
     ]
+
 
 def schema_checks(version=SupportedPython.V3_8):
     return [
