@@ -159,6 +159,11 @@ class ConfigurableClass(ABC):
             "ConfigurableClass subclasses must implement the from_config_value staticmethod"
         )
 
+def normalize_module_name(module_name: str):
+    if module_name[:12] == "dagster.core":
+        return f"dagster._core.{module_name[12:]}"
+    else:
+        return module_name
 
 def class_from_code_pointer(module_name, class_name):
     try:
