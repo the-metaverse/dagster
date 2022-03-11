@@ -2,7 +2,7 @@ import sys
 from contextlib import contextmanager
 
 from dagster import lambda_solid, pipeline, repository
-from dagster.api.snapshot_repository import sync_get_streaming_external_repositories_data_grpc
+from dagster._api.snapshot_repository import sync_get_streaming_external_repositories_data_grpc
 from dagster.core.host_representation import (
     ExternalRepositoryData,
     ManagedGrpcPythonEnvRepositoryLocationOrigin,
