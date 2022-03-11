@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, cast
 
 import pendulum
 
-from dagster import check
+from dagster import _check as check
 from dagster._core.events import DagsterEvent, EngineEventData, MetadataEntry, log_step_event
 from dagster._core.execution.context.system import PlanOrchestrationContext
 from dagster._core.execution.plan.plan import ExecutionPlan

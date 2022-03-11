@@ -1,6 +1,6 @@
 # one_off_type_start
 
-from dagster import DagsterType, check_dagster_type
+from dagster import DagsterType, _check as check_dagster_type
 
 set_containing_1 = DagsterType(
     name="set_containing_1",

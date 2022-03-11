@@ -13,12 +13,12 @@ from typing import (
     cast,
 )
 
-from dagster import check
+from dagster import _check as check
 from dagster._core.definitions.events import AssetKey, DynamicAssetKey
 from dagster._core.definitions.metadata import MetadataEntry, MetadataUserInput, normalize_metadata
 from dagster._core.errors import DagsterError, DagsterInvalidDefinitionError
 from dagster._core.types.dagster_type import DagsterType, resolve_dagster_type
-from dagster._utils.backcompat import experimental_arg_warning
+from dagster.utils.backcompat import experimental_arg_warning
 
 from .inference import InferredOutputProps
 from .input import NoValueSentinel

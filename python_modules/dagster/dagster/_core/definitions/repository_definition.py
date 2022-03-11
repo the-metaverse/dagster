@@ -15,10 +15,10 @@ from typing import (
     cast,
 )
 
-from dagster import check
+from dagster import _check as check
 from dagster._core.asset_defs.source_asset import SourceAsset
 from dagster._core.errors import DagsterInvalidDefinitionError, DagsterInvariantViolationError
-from dagster._utils import merge_dicts
+from dagster.utils import merge_dicts
 
 from .events import AssetKey
 from .graph_definition import GraphDefinition, SubselectedGraphDefinition
