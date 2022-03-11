@@ -24,7 +24,7 @@ from dagster._core.definitions.partition import PartitionsDefinition
 from dagster._core.definitions.utils import NoValueSentinel
 from dagster._core.errors import DagsterInvalidDefinitionError
 from dagster._core.types.dagster_type import DagsterType
-from dagster.utils.backcompat import experimental_decorator
+from dagster._utils.backcompat import experimental_decorator
 
 from .asset import AssetsDefinition
 from .asset_in import AssetIn

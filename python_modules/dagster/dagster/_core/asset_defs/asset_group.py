@@ -22,7 +22,7 @@ from typing import (
 from dagster import check
 from dagster._core.definitions.events import AssetKey
 from dagster._core.storage.fs_asset_io_manager import fs_asset_io_manager
-from dagster.utils import merge_dicts
+from dagster._utils import merge_dicts
 
 from ..definitions.executor_definition import ExecutorDefinition
 from ..definitions.job_definition import JobDefinition
