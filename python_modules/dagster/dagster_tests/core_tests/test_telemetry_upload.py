@@ -7,9 +7,9 @@ import responses
 from click.testing import CliRunner
 
 from dagster._cli.pipeline import pipeline_execute_command
-from dagster.core.telemetry import cleanup_telemetry_logger
-from dagster.core.telemetry_upload import DAGSTER_TELEMETRY_URL, upload_logs
-from dagster.core.test_utils import environ, instance_for_test
+from dagster._core.telemetry import cleanup_telemetry_logger
+from dagster._core.telemetry_upload import DAGSTER_TELEMETRY_URL, upload_logs
+from dagster._core.test_utils import environ, instance_for_test
 from dagster.utils import pushd, script_relative_path
 
 

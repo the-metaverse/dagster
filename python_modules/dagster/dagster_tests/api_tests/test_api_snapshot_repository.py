@@ -3,11 +3,11 @@ from contextlib import contextmanager
 
 from dagster import lambda_solid, pipeline, repository
 from dagster._api.snapshot_repository import sync_get_streaming_external_repositories_data_grpc
-from dagster.core.host_representation import (
+from dagster._core.host_representation import (
     ExternalRepositoryData,
     ManagedGrpcPythonEnvRepositoryLocationOrigin,
 )
-from dagster.core.types.loadable_target_origin import LoadableTargetOrigin
+from dagster._core.types.loadable_target_origin import LoadableTargetOrigin
 
 from .utils import get_bar_repo_repository_location
 

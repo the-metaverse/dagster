@@ -13,7 +13,7 @@ from dagster import (
     repository,
     resource,
 )
-from dagster.core.asset_defs import AssetGroup, AssetIn, SourceAsset, asset, multi_asset
+from dagster._core.asset_defs import AssetGroup, AssetIn, SourceAsset, asset, multi_asset
 
 
 def test_asset_group_from_list():
