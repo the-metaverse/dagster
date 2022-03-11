@@ -1,6 +1,6 @@
-from dagster_aws.s3 import S3Coordinate
+from typing import Dict, Generator, Union
 
-from dagster import ExpectationResult, Field, FileHandle, MetadataEntry, Output, solid
+from dagster import ExpectationResult, Field, MetadataEntry, Output, solid
 from dagster._utils.temp_file import get_temp_file_name
 
 
@@ -22,7 +22,7 @@ from dagster._utils.temp_file import get_temp_file_name
 The `file_cache` is a resource type that allows a solid author to save files
 and assign a key to them. The keyed file store can be backed by local file or any
 object store (currently we support s3). This keyed file store can be configured
-to be at an external location so that is persists in a well known spot between runs.
+to be at an external location so that it persists in a well known spot between runs.
 It is designed for the case where there is an expensive download step that should not
 occur unless the downloaded file does not exist. Redownload can be instigated either
 by configuring the source to overwrite files or to just delete the file in the underlying
@@ -36,7 +36,7 @@ In order to work this must be executed within a mode that provides an `s3`
 and `file_cache` resource.
     """,
 )
-def cache_file_from_s3(context, s3_coordinate: S3Coordinate) -> FileHandle:
+def cache_file_from_s3(context, s3_coordinate: Dict) -> Generator[Union[ExpectationResult, Output], None, None]:
     target_key = context.solid_config.get("file_key", s3_coordinate["key"].split("/")[-1])
 
     file_cache = context.resources.file_cache
