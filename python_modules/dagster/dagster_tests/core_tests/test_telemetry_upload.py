@@ -6,7 +6,7 @@ import pytest
 import responses
 from click.testing import CliRunner
 
-from dagster.cli.pipeline import pipeline_execute_command
+from dagster._cli.pipeline import pipeline_execute_command
 from dagster.core.telemetry import cleanup_telemetry_logger
 from dagster.core.telemetry_upload import DAGSTER_TELEMETRY_URL, upload_logs
 from dagster.core.test_utils import environ, instance_for_test
