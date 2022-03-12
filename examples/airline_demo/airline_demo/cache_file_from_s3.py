@@ -36,7 +36,9 @@ In order to work this must be executed within a mode that provides an `s3`
 and `file_cache` resource.
     """,
 )
-def cache_file_from_s3(context, s3_coordinate: Dict) -> Generator[Union[ExpectationResult, Output], None, None]:
+def cache_file_from_s3(
+    context, s3_coordinate: Dict
+) -> Generator[Union[ExpectationResult, Output], None, None]:
     target_key = context.solid_config.get("file_key", s3_coordinate["key"].split("/")[-1])
 
     file_cache = context.resources.file_cache
