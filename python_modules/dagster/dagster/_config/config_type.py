@@ -175,7 +175,7 @@ class Noneable(ConfigType):
        config={}                 # Error
     """
 
-    def __init__(self, inner_type: ConfigType):
+    def __init__(self, inner_type: object):
         from .field import resolve_to_config_type
 
         self.inner_type = resolve_to_config_type(inner_type)

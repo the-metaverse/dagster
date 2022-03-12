@@ -1,6 +1,8 @@
 import sys
+from typing import cast
 
 import kubernetes
+from dagster._core.origin import PipelinePythonOrigin
 from dagster_k8s.job import (
     DagsterK8sJobConfig,
     construct_dagster_k8s_job,
@@ -159,7 +161,7 @@ class CeleryK8sRunLauncher(RunLauncher, ConfigurableClass):
 
         job_image_from_executor_config = exc_config.get("job_image")
 
-        pipeline_origin = context.pipeline_code_origin
+        pipeline_origin = cast(PipelinePythonOrigin, context.pipeline_code_origin)
         repository_origin = pipeline_origin.repository_origin
 
         job_image = repository_origin.container_image
